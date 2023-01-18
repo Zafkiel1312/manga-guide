@@ -1,0 +1,107 @@
+img {
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.image-list-item {
+    transition: transform 150ms ease-in-out, z-index 300ms;
+    overflow: hidden;
+    border-radius: 50px;
+    margin: 5%;
+    width: 90%;
+    height: 90%;
+}
+
+.image-list-item:hover {
+    transform: scale3d(1.1, 1.1, 1);
+    z-index: 2;
+}
+
+#image-grid {
+    height: 100%;
+    overflow: hidden;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#add-manga-dialog-main, #show-manga-dialog-main {
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    display: flex
+}
+
+.opaque-background-invisible {
+    transition: background 300ms, z-index 300ms;
+    background: rgba(0, 0, 0, 0);
+    z-index: -5;
+
+    height: 100%;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.opaque-background-visible {
+    transition: background 300ms, z-index 300ms;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 5;
+
+    height: 100%;
+    width: 100%;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+}
+
+.add-manga-invisible {
+    background: rgba(0, 0, 0, 0);
+    transform: scale(0.9);
+    z-index: -10;
+    transition: background 300ms, transform 300ms, z-index 300ms;
+}
+
+.add-manga-visible {
+    background: rgba(0, 0, 0, 0.6);
+    transform: translateX(0);
+    z-index: 10;
+    transition: background 300ms, transform 300ms, z-index 300ms;
+}
+
+#add-manga-form {
+    opacity: 1;
+    padding: 3%;
+}
+
+.add-manga-text-field {
+    border: 0 solid #fff;
+    background: rgba(10, 10, 10, 1);
+    border-radius: 50px;
+}
+
+.color-is-changeable {
+    width: 200px;
+}
+
+.color-is-not-changeable {
+    width: 0;
+}
+
+.scroll-bar {
+    width: 10px;
+    height: 100%;
+    right: 0;
+    top: 0;
+    position: absolute;
+    border-radius: 7px;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+.scrollhost-container {
+    position: relative;
+    height: 100%;
+}
