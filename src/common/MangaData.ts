@@ -106,9 +106,9 @@ export const testData: MangaEntryModel[] =
             "publisher": "Egmont Manga",
             "picture": "https://mangaguide.de/bilder/frontcover_gross/18075.jpg",
             "releaseDate": 2020,
-            "releasedVolumes": 8,
-            "ownedVolumes": 8,
-            "nextVolumeRelease": "Januar 2023"
+            "releasedVolumes": 9,
+            "ownedVolumes": 9,
+            "nextVolumeRelease": "Juni 2023"
         },
         {
             "id": uuidv4(),
