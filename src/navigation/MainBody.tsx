@@ -14,8 +14,9 @@ function MainBody() {
         background: `linear-gradient(
             0deg, 
             ${theme.palette.secondary.main} 80%, 
-            ${theme.palette.primary.main} 98%)`
-
+            ${theme.palette.primary.main} 98%)`,
+        width: "100%",
+        height: "100%"
     }
 
     const [visibility, setVisibility] = useState(false)
@@ -30,7 +31,6 @@ function MainBody() {
     return (
         <Box
             id={"main-body"}
-            maxWidth={"xl"}
             style={style}
         >
             <ShowMangaContext.Provider value={showMangaContextObject}>
