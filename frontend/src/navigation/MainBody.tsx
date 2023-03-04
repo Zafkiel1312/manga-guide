@@ -1,13 +1,16 @@
-import { Box, useTheme } from "@mui/material";
+import {Box, useTheme} from "@mui/material";
 import MangaGrid from "../widgets/MangaGrid";
-import React, { useState } from "react";
-import { AddMangaDialog } from "../widgets/AddMangaDialog";
-import { ShowMangaContextObject, ShowMangaContext } from "../common/context/ShowMangaContext";
-import { defaultEntry } from "../common/MangaData";
-import { ShowMangaDialog } from "../widgets/ShowMangaDialog";
+import React from "react";
+import {AddMangaDialog} from "../widgets/AddMangaDialog";
+import {ShowMangaDialog} from "../widgets/ShowMangaDialog";
+import {useParams} from "react-router-dom";
 
-function MainBody() {
+interface MainBodyProps {
+    viewManga?: boolean,
+    addManga?: boolean
+}
 
+function MainBody(props: MainBodyProps) {
     const theme = useTheme()
     const style = {
         margin: "55px 0 0 0",
@@ -19,25 +22,16 @@ function MainBody() {
         height: "100%"
     }
 
-    const [visibility, setVisibility] = useState(false)
-    const [entry, setEntry] = useState(defaultEntry)
-    const showMangaContextObject: ShowMangaContextObject = {
-        visibility,
-        setVisibility,
-        entry,
-        setEntry
-    }
+    const mangaId = useParams<string>().mangaId
 
     return (
         <Box
             id={"main-body"}
             style={style}
         >
-            <ShowMangaContext.Provider value={showMangaContextObject}>
-                <MangaGrid />
-                <AddMangaDialog />
-                <ShowMangaDialog />
-            </ShowMangaContext.Provider>
+            <MangaGrid/>
+            {props.addManga && <AddMangaDialog/>}
+            {props.viewManga && <ShowMangaDialog mangaId={mangaId}/>}
         </Box>
     )
 }

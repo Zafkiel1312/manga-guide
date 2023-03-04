@@ -1,23 +1,14 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import TopMenu from "./navigation/TopMenu";
 import MainBody from "./navigation/MainBody";
-import { Stack, ThemeProvider } from "@mui/material";
-import {
-    AddMangaVisibilityContextObject,
-    AddMangaVisibilityContext
-} from "./common/context/AddMangaVisibilityContextObject";
-import { ColorThemeContext, ColorThemeContextObject } from "./common/context/ColorThemeContext";
-import { CustomTheme, getDarkTheme, getLightTheme } from "./CustomTheme";
-import { LocalStorageContext, LocalStorageContextObject } from "./common/context/LocalStorageContext";
-import { LOCAL_STORAGE_KEY, testData, useLocalStorage } from "./common/MangaData";
+import {Stack, ThemeProvider} from "@mui/material";
+import {ColorThemeContext, ColorThemeContextObject} from "./common/context/ColorThemeContext";
+import {CustomTheme, getDarkTheme, getLightTheme} from "./CustomTheme";
+import {LocalStorageContext, LocalStorageContextObject} from "./common/context/LocalStorageContext";
+import {LOCAL_STORAGE_KEY, testData, useLocalStorage} from "./common/MangaData";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 
 function App() {
-
-    const [visibility, setVisibility] = useState(false)
-    const addMangaDialogVisibility: AddMangaVisibilityContextObject = {
-        "value": visibility,
-        "setValue": setVisibility
-    }
 
     const [isDarkTheme, setIsDarkTheme] = useState(true)
     const [colorTheme, setColorTheme] = useState(CustomTheme.DEEP_PURPLE)
@@ -35,23 +26,25 @@ function App() {
     }
 
     return (
-        <Stack
-            spacing={0}
-        >
-            <ThemeProvider theme={isDarkTheme ? getDarkTheme(colorTheme) : getLightTheme(colorTheme)}>
-                <LocalStorageContext.Provider value={localStorageObject}>
-                    <AddMangaVisibilityContext.Provider value={addMangaDialogVisibility}>
+        <BrowserRouter>
+            <Stack
+                spacing={0}
+            >
+                <ThemeProvider theme={isDarkTheme ? getDarkTheme(colorTheme) : getLightTheme(colorTheme)}>
+                    <LocalStorageContext.Provider value={localStorageObject}>
                         <ColorThemeContext.Provider value={isDarkThemeObject}>
-                            <TopMenu />
+                            <TopMenu/>
                         </ColorThemeContext.Provider>
-                        <MainBody />
-                    </AddMangaVisibilityContext.Provider>
-                </LocalStorageContext.Provider>
-            </ThemeProvider>
-        </Stack>
-
+                        <Routes>
+                            <Route path={"/"} element={<MainBody/>}/>
+                            <Route path={"/view/:mangaId"} element={<MainBody viewManga/>}/>
+                            <Route path={"/add/"} element={<MainBody addManga/>}/>
+                        </Routes>
+                    </LocalStorageContext.Provider>
+                </ThemeProvider>
+            </Stack>
+        </BrowserRouter>
     )
-        ;
 }
 
 export default App;
