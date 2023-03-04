@@ -48,7 +48,8 @@ function App() {
                             </ColorThemeContext.Provider>
                             <Routes>
                                 <Route path={"/"} element={<MainBody />} />
-                                <Route path={"/view/:mangaId"} element={<MainBody />} />
+                                <Route path={"/view/:mangaId"} element={<MainBody viewManga/>} />
+                                <Route path={"/add/"} element={<MainBody addManga/>} />
                             </Routes>
                         </AddMangaVisibilityContext.Provider>
                     </LocalStorageContext.Provider>

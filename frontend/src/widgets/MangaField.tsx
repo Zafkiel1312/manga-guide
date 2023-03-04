@@ -1,15 +1,13 @@
-import { ImageListItem, ImageListItemBar } from "@mui/material";
-import { ShowMangaContext } from "../common/context/ShowMangaContext";
-import { useContext } from "react";
-import { MangaEntryModel } from "../common/MangaEntryModel";
+import {ImageListItem, ImageListItemBar} from "@mui/material";
+import {MangaEntryModel} from "../common/MangaEntryModel";
+import {useNavigate} from "react-router-dom";
 
 export function MangaField(props: MangaEntryModel) {
 
-    const {setVisibility, setEntry} = useContext(ShowMangaContext)
+    const navigate = useNavigate()
 
     function handleOnClick() {
-        setEntry(props)
-        setVisibility(true)
+        navigate("/view/" + props.id)
     }
 
     return (
