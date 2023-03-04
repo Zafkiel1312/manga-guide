@@ -23,18 +23,15 @@ function MainBody(props: MainBodyProps) {
     }
 
     const mangaId = useParams<string>().mangaId
-    console.log(mangaId)
 
     return (
         <Box
             id={"main-body"}
             style={style}
         >
-            {/*<ShowMangaContext.Provider value={showMangaContextObject}>*/}
             <MangaGrid/>
             {props.addManga && <AddMangaDialog/>}
             {props.viewManga && <ShowMangaDialog mangaId={mangaId}/>}
-            {/*</ShowMangaContext.Provider>*/}
         </Box>
     )
 }
