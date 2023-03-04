@@ -26,3 +26,6 @@ yarn-error.log*
 
 #frontend
 /frontend/node_modules
+
+#backend
+/backend/pb_data
