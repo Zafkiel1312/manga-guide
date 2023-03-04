@@ -1,8 +1,7 @@
-import { ImageList } from "@mui/material";
-import { MangaField } from "./MangaField";
-import { useContext, useEffect, useState } from "react";
-import { MangaEntryModel } from "../common/MangaEntryModel";
-import { LocalStorageContext } from "../common/context/LocalStorageContext";
+import {ImageList} from "@mui/material";
+import {MangaField} from "./MangaField";
+import {useEffect, useState} from "react";
+import {useGetAllMangas} from "../common/middleware";
 
 function MangaGrid() {
 
@@ -18,22 +17,23 @@ function MangaGrid() {
         window.addEventListener('resize', handleResize)
     })
 
-    const [mangaList, setMangaList] = useState<MangaEntryModel[]>([])
+    // const [mangaList, setMangaList] = useState<MangaEntryModel[]>([])
 
-    const { value: entries } = useContext(LocalStorageContext)
+    //const { value: entries } = useContext(LocalStorageContext)
+    const { data, isLoading } = useGetAllMangas()
 
-    useEffect(() => {
-        function renderMangaList() {
-            setMangaList(entries as MangaEntryModel[])
-        }
-
-        renderMangaList()
-    }, [entries])
+    // useEffect(() => {
+    //     function renderMangaList() {
+    //         setMangaList(entries as MangaEntryModel[])
+    //     }
+    //
+    //     renderMangaList()
+    // }, [entries])
 
     return (
         <div>
-            <ImageList cols={colCount} id={"image-grid"}>
-                {mangaList.map((entry, num) =>
+            {!isLoading && <ImageList cols={colCount} id={"image-grid"}>
+                {data!.map((entry, num) =>
                     <MangaField
                         id={entry.id}
                         title={entry.title}
@@ -48,6 +48,7 @@ function MangaGrid() {
                     />
                 )}
             </ImageList>
+            }
         </div>
     )
 }

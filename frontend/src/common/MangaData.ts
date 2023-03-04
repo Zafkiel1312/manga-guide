@@ -1,6 +1,6 @@
 
 import { v4 as uuidv4 } from 'uuid';
-import { MangaEntryModel } from "./MangaEntryModel";
+import {CreateMangaEntryModel, MangaEntryModel} from "./MangaEntryModel";
 import { useEffect, useState } from "react";
 
 export const LOCAL_STORAGE_KEY = "manga-guide"
@@ -19,8 +19,7 @@ export const useLocalStorage = (storageKey: string, fallbackState: any) => {
     return [value, setValue];
 }
 
-export const defaultEntry: MangaEntryModel = {
-    id: uuidv4(),
+export const defaultEntry: CreateMangaEntryModel = {
     title: "One Piece",
     author: "Eiichiro Oda",
     publisher: "Carlsen Verlag",

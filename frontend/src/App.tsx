@@ -7,6 +7,7 @@ import {CustomTheme, getDarkTheme, getLightTheme} from "./CustomTheme";
 import {LocalStorageContext, LocalStorageContextObject} from "./common/context/LocalStorageContext";
 import {LOCAL_STORAGE_KEY, testData, useLocalStorage} from "./common/MangaData";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {QueryClient, QueryClientProvider} from "@tanstack/react-query";
 
 function App() {
 
@@ -18,6 +19,8 @@ function App() {
         colorTheme: colorTheme,
         setColorTheme: setColorTheme
     }
+
+    const queryClient = new QueryClient()
 
     const [localStorage, setLocalStorage] = useLocalStorage(LOCAL_STORAGE_KEY, testData)
     const localStorageObject: LocalStorageContextObject = {
@@ -31,16 +34,18 @@ function App() {
                 spacing={0}
             >
                 <ThemeProvider theme={isDarkTheme ? getDarkTheme(colorTheme) : getLightTheme(colorTheme)}>
-                    <LocalStorageContext.Provider value={localStorageObject}>
-                        <ColorThemeContext.Provider value={isDarkThemeObject}>
-                            <TopMenu/>
-                        </ColorThemeContext.Provider>
-                        <Routes>
-                            <Route path={"/"} element={<MainBody/>}/>
-                            <Route path={"/view/:mangaId"} element={<MainBody viewManga/>}/>
-                            <Route path={"/add/"} element={<MainBody addManga/>}/>
-                        </Routes>
-                    </LocalStorageContext.Provider>
+                    <QueryClientProvider client={queryClient}>
+                        <LocalStorageContext.Provider value={localStorageObject}>
+                            <ColorThemeContext.Provider value={isDarkThemeObject}>
+                                <TopMenu/>
+                            </ColorThemeContext.Provider>
+                            <Routes>
+                                <Route path={"/"} element={<MainBody/>}/>
+                                <Route path={"/view/:mangaId"} element={<MainBody viewManga/>}/>
+                                <Route path={"/add/"} element={<MainBody addManga/>}/>
+                            </Routes>
+                        </LocalStorageContext.Provider>
+                    </QueryClientProvider>
                 </ThemeProvider>
             </Stack>
         </BrowserRouter>

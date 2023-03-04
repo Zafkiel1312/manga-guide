@@ -1,11 +1,12 @@
 import {Box, IconButton, TextField} from "@mui/material";
 import {useContext, useState} from "react";
-import {compareMangaEntry, MangaEntryModel} from "../common/MangaEntryModel";
+import {compareMangaEntry, CreateMangaEntryModel, MangaEntryModel} from "../common/MangaEntryModel";
 import {LocalStorageContext} from "../common/context/LocalStorageContext";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
 import {defaultEntry} from "../common/MangaData";
 import {useNavigate} from "react-router-dom";
+import {saveManga} from "../common/middleware";
 
 export function AddMangaDialog() {
     //ToDo Übergänge ordentlich machen
@@ -13,8 +14,7 @@ export function AddMangaDialog() {
 
     const { value: entries, setValue: setEntries } = useContext(LocalStorageContext)
 
-    const [newEntry, setNewEntry] = useState(defaultEntry)
-
+    const [newEntry, setNewEntry] = useState<CreateMangaEntryModel>(defaultEntry)
 
     function handleSubmit() {
         const oldData: MangaEntryModel[] = entries.filter((entry: MangaEntryModel) => {
@@ -26,6 +26,8 @@ export function AddMangaDialog() {
 
         const newData = [...oldData, newEntry].sort(compareMangaEntry)
         setEntries(newData)
+        saveManga(newEntry).then()
+        navigate("/")
     }
 
 
