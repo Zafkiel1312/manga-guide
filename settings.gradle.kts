@@ -1,3 +1,3 @@
 rootProject.name = "manga-guide"
 
-include("frontend", "MangaGuideBackend")
+include("frontend", "frontend_new", "MangaGuideBackend")
