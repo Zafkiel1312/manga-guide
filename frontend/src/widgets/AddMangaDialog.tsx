@@ -1,23 +1,18 @@
-import { Box, IconButton, TextField } from "@mui/material";
-import { useContext, useState } from "react";
-import {
-    AddMangaVisibilityContextObject,
-    AddMangaVisibilityContext
-} from "../common/context/AddMangaVisibilityContextObject";
-import { compareMangaEntry, MangaEntryModel } from "../common/MangaEntryModel";
-import { LocalStorageContext } from "../common/context/LocalStorageContext";
+import {Box, IconButton, TextField} from "@mui/material";
+import {useContext, useState} from "react";
+import {compareMangaEntry, MangaEntryModel} from "../common/MangaEntryModel";
+import {LocalStorageContext} from "../common/context/LocalStorageContext";
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import CancelIcon from '@mui/icons-material/Cancel';
-import { defaultEntry } from "../common/MangaData";
+import {defaultEntry} from "../common/MangaData";
+import {useNavigate} from "react-router-dom";
 
 export function AddMangaDialog() {
+    //ToDo Übergänge ordentlich machen
+    const navigate = useNavigate()
 
     const { value: entries, setValue: setEntries } = useContext(LocalStorageContext)
 
-    const {
-        value: visibility,
-        setValue: setVisibility
-    } = useContext(AddMangaVisibilityContext) as AddMangaVisibilityContextObject
     const [newEntry, setNewEntry] = useState(defaultEntry)
 
 
@@ -31,7 +26,6 @@ export function AddMangaDialog() {
 
         const newData = [...oldData, newEntry].sort(compareMangaEntry)
         setEntries(newData)
-        setVisibility(false)
     }
 
 
@@ -39,11 +33,11 @@ export function AddMangaDialog() {
         <Box id={"add-manga-dialog-main"}>
 
             <Box
-                className={visibility ? "opaque-background-visible" : "opaque-background-invisible"}
-                onClick={() => {setVisibility(false)}}
+                className={"opaque-background-visible"}
+                onClick={() => {navigate("/")}}
             />
             <Box
-                className={visibility ? "add-manga-visible" : "add-manga-invisible"}
+                className={"add-manga-visible"}
                 style={{
                     width: "50%",
                     minWidth: "400px",
@@ -53,7 +47,6 @@ export function AddMangaDialog() {
                     position: "fixed",
                 }}
             >
-                {visibility && (
                     <form id={"add-manga-form"}>
                         <TextField
                             className={"add-manga-text-field"}
@@ -273,14 +266,13 @@ export function AddMangaDialog() {
                         <IconButton
                             color={"primary"}
                             onClick={() => {
-                                setVisibility(false)
+                                navigate("/")
                             }}
                         >
                             <CancelIcon fontSize={"large"} />
                         </IconButton>
 
                     </form>
-                )}
             </Box>
         </Box>
     )

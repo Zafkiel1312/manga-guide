@@ -1,23 +1,20 @@
-import { AppBar, Box, IconButton, Toolbar, useTheme } from "@mui/material";
-import { useContext, useState } from "react";
-import {
-    AddMangaVisibilityContext,
-    AddMangaVisibilityContextObject
-} from "../common/context/AddMangaVisibilityContextObject";
+import {AppBar, Box, IconButton, Toolbar, useTheme} from "@mui/material";
+import {useContext, useState} from "react";
 import ColorLensIcon from '@mui/icons-material/ColorLens';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
-import { ColorThemeContext } from "../common/context/ColorThemeContext";
-import { CustomTheme } from "../CustomTheme";
-import { ColorChangeButton } from "../widgets/ColorChangeButton";
+import {ColorThemeContext} from "../common/context/ColorThemeContext";
+import {CustomTheme} from "../CustomTheme";
+import {ColorChangeButton} from "../widgets/ColorChangeButton";
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import ScrollContainer from "react-indiana-drag-scroll";
+import {useNavigate} from "react-router-dom";
 
 function TopMenu() {
 
     const theme = useTheme()
     const { isDarkTheme, setIsDarkTheme } = useContext(ColorThemeContext)
 
-    const { setValue } = useContext(AddMangaVisibilityContext) as AddMangaVisibilityContextObject
+    const navigate = useNavigate()
 
     const [isColorChangeable, setIsColorChangeable] = useState(false)
     const colorOptions: CustomTheme[] = []
@@ -46,7 +43,7 @@ function TopMenu() {
                         <IconButton
                             color={"secondary"}
                             onClick={() => {
-                                setValue(true)
+                                navigate("/add/")
                             }}
                             style={{
                                 margin: "0 2%"

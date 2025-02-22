@@ -29,3 +29,6 @@ yarn-error.log*
 
 # Ignore Gradle build output directory
 build
+
+#frontend
+/frontend/node_modules
