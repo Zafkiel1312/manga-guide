@@ -5,6 +5,7 @@ import java.util.*
 data class MangaDto(
     val id: UUID?,
     val title: String,
+    val pictureUrl: String,
     val author: List<String>,
     val publisherId: UUID,
     val releaseDate: Date,

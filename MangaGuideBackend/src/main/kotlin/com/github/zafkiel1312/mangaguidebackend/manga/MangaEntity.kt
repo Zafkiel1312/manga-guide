@@ -11,6 +11,7 @@ class MangaEntity(
     @Id @GeneratedValue
     val id: UUID? = null,
     val title: String,
+    val pictureUrl: String,
     @ElementCollection
     val author: List<String>,
     @ManyToOne

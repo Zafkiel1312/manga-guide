@@ -4,6 +4,7 @@ import java.util.*
 
 data class CreateMangaDto(
     val title: String,
+    val pictureUrl: String,
     val author: List<String>,
     val publisherId: UUID,
     val releaseDate: Date,

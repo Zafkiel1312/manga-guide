@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Text from "$lib/components/Text.svelte";
+  //import Text from "$lib/components/Text.svelte";
   import type {PageData} from "../../../.svelte-kit/types/src/routes/$types";
 
   let num = $state(0)
@@ -34,4 +34,4 @@
 <span>
     {calc}
 </span>
-<Text text="sökjdfngösdfjg" img="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/640px-Cat03.jpg"/>
+<!-- <Text text="sökjdfngösdfjg" img="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/640px-Cat03.jpg"/> -->
