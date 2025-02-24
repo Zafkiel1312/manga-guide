@@ -17,7 +17,7 @@ class MangaEntity(
     @ManyToOne
     @JoinColumn(name = "publisher_id", nullable = false)
     var publisher: PublisherEntity,
-    val releaseDate: Date,
+    val releaseDate: Date?,
     val releasedVolumes: Int,
     val boughtVolumes: Int,
     val japaneseVolumes: Int,

@@ -2,6 +2,7 @@ package com.github.zafkiel1312.mangaguidebackend.volume
 
 import com.github.zafkiel1312.mangaguidebackend.exceptions.EntityNotFoundException
 import com.github.zafkiel1312.mangaguidebackend.manga.MangaEntity
+import com.github.zafkiel1312.mangaguidebackend.mangapassion.dto.volume.VolumeResponseDto
 import com.github.zafkiel1312.mangaguidebackend.scraper.dto.VolumeDetailsDto
 import com.github.zafkiel1312.mangaguidebackend.volume.dto.VolumeDto
 import org.springframework.stereotype.Service
@@ -30,6 +31,22 @@ class VolumeService(
         volumeRepository.findById(id).orElseThrow{
             throw EntityNotFoundException("Volume with id $id could not be found")
         }
+
+    @Transactional
+    fun createVolumesFromMangaPassion(manga: MangaEntity, volumes: List<VolumeResponseDto>) {
+        volumes.map {
+            VolumeEntity(
+                null,
+                manga,
+                it.number,
+                it.date,
+                it.date?.before(Date()) ?: false,
+                it.cover
+            )
+        }.let {
+            volumeRepository.saveAll(it)
+        }
+    }
 
     @Transactional
     fun createVolumeFromScraper(manga: MangaEntity, volumeDetails: VolumeDetailsDto) {

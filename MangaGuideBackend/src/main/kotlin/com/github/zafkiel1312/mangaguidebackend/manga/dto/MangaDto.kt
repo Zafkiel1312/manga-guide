@@ -8,7 +8,7 @@ data class MangaDto(
     val pictureUrl: String,
     val author: List<String>,
     val publisherId: UUID,
-    val releaseDate: Date,
+    val releaseDate: Date?,
     val releasedVolumes: Int,
     val boughtVolumes: Int,
     val japaneseVolumes: Int,
