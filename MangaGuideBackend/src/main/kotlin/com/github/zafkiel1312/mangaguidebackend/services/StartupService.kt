@@ -27,6 +27,198 @@ class StartupService(
 
         mangaService.createMange(
             CreateMangaDto(
+                "The Younger Sister Of The Male Lead I Defeated Is Ridiculously Wealthy?!",
+                "https://mangaguide.de/bilder/frontcover_gross/162.jpg",
+                listOf("Eiichiro Oda"),
+                publisherId,
+                Date(),
+                102,
+                12,
+                110,
+                false,
+                false,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "Accel World",
+                "https://mangaguide.de/bilder/frontcover_gross/11034.jpg",
+                listOf("Hiroyuki Aigamo"),
+                publisherId,
+                Date(),
+                8,
+                8,
+                8,
+                true,
+                true,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "Chainsaw Man",
+                "https://mangaguide.de/bilder/frontcover_gross/20026.jpg",
+                listOf("Tatsuki Fujimoto"),
+                publisherId,
+                Date(),
+                16,
+                16,
+                20,
+                false,
+                true,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "One Piece",
+                "https://mangaguide.de/bilder/frontcover_gross/162.jpg",
+                listOf("Eiichiro Oda"),
+                publisherId,
+                Date(),
+                102,
+                12,
+                110,
+                false,
+                false,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "Accel World",
+                "https://mangaguide.de/bilder/frontcover_gross/11034.jpg",
+                listOf("Hiroyuki Aigamo"),
+                publisherId,
+                Date(),
+                8,
+                8,
+                8,
+                true,
+                true,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "Chainsaw Man",
+                "https://mangaguide.de/bilder/frontcover_gross/20026.jpg",
+                listOf("Tatsuki Fujimoto"),
+                publisherId,
+                Date(),
+                16,
+                16,
+                20,
+                false,
+                true,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "One Piece",
+                "https://mangaguide.de/bilder/frontcover_gross/162.jpg",
+                listOf("Eiichiro Oda"),
+                publisherId,
+                Date(),
+                102,
+                12,
+                110,
+                false,
+                false,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "Accel World",
+                "https://mangaguide.de/bilder/frontcover_gross/11034.jpg",
+                listOf("Hiroyuki Aigamo"),
+                publisherId,
+                Date(),
+                8,
+                8,
+                8,
+                true,
+                true,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "Chainsaw Man",
+                "https://mangaguide.de/bilder/frontcover_gross/20026.jpg",
+                listOf("Tatsuki Fujimoto"),
+                publisherId,
+                Date(),
+                16,
+                16,
+                20,
+                false,
+                true,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "One Piece",
+                "https://mangaguide.de/bilder/frontcover_gross/162.jpg",
+                listOf("Eiichiro Oda"),
+                publisherId,
+                Date(),
+                102,
+                12,
+                110,
+                false,
+                false,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "Accel World",
+                "https://mangaguide.de/bilder/frontcover_gross/11034.jpg",
+                listOf("Hiroyuki Aigamo"),
+                publisherId,
+                Date(),
+                8,
+                8,
+                8,
+                true,
+                true,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
+                "Chainsaw Man",
+                "https://mangaguide.de/bilder/frontcover_gross/20026.jpg",
+                listOf("Tatsuki Fujimoto"),
+                publisherId,
+                Date(),
+                16,
+                16,
+                20,
+                false,
+                true,
+                Date()
+            )
+        )
+
+        mangaService.createMange(
+            CreateMangaDto(
                 "One Piece",
                 "https://mangaguide.de/bilder/frontcover_gross/162.jpg",
                 listOf("Eiichiro Oda"),

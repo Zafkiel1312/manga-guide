@@ -5,10 +5,20 @@
     import MaterialSymbolsMenuBook from '~icons/material-symbols/menu-book'
     import MaterialSymbolsArticlePerson from '~icons/material-symbols/article-person'
     import MaterialSymbolsAccountCircleFull from '~icons/material-symbols/account-circle-full'
+    import { page } from '$app/state';
+    import {setContext} from "svelte";
+
     let { children } = $props();
     let currentTile: number = $state(0);
+
+    let width = $state(1)
+    let height = $state(1)
+
+    setContext("usableWidth", () => width)
+    setContext("usableHeight", () => height)
+
 </script>
-<div class="flex flex-row">
+<div class="flex flex-row w-full">
     <AppRail height="h-screen">
         <svelte:fragment slot="lead">
             <AppRailAnchor href="/">
@@ -17,30 +27,31 @@
                 </span>
             </AppRailAnchor>
         </svelte:fragment>
-        <!-- --- -->
-        <AppRailTile bind:group={currentTile} name="manga" value={0} title="manga">
+        <AppRailAnchor href="/manga" selected={page.url.pathname === "/manga"} bind:group={currentTile} name="manga" value={0} title="manga">
             <svelte:fragment slot="lead">
                 <span class="flex justify-center w-full">
                     <MaterialSymbolsMenuBook style="font-size:1.5em"/>
                 </span>
             </svelte:fragment>
             <span>Manga</span>
-        </AppRailTile>
-        <AppRailTile bind:group={currentTile} name="publisher" value={1} title="publisher">
+        </AppRailAnchor>
+        <AppRailAnchor href="/publisher" selected={page.url.pathname === "/publisher"} bind:group={currentTile} name="publisher" value={1} title="publisher">
             <svelte:fragment slot="lead">
                 <span class="flex justify-center w-full">
                     <MaterialSymbolsArticlePerson style="font-size:1.5em"/>
                 </span>
             </svelte:fragment>
             <span>Publisher</span>
-        </AppRailTile>
-        <AppRailTile slot="trail" bind:group={currentTile} name="account" value={2} title="account">
+        </AppRailAnchor>
+        <AppRailAnchor slot="trail" >
             <svelte:fragment slot="lead">
                 <span class="flex justify-center w-full">
                     <MaterialSymbolsAccountCircleFull style="font-size:1.5em" />
                 </span>
             </svelte:fragment>
-        </AppRailTile>
+        </AppRailAnchor>
     </AppRail>
-    {@render children()}
+    <div bind:clientHeight={height} bind:clientWidth={width} class="h-screen w-full overflow-scroll hide-scrollbar">
+        {@render children()}
+    </div>
 </div>
