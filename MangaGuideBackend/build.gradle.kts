@@ -24,9 +24,16 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
+	implementation("com.fasterxml.jackson.core:jackson-databind")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.mapstruct:mapstruct:1.6.3")
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
+	implementation("org.jsoup:jsoup:1.18.3")
+	implementation("org.seleniumhq.selenium:selenium-java:4.29.0")
+
+	implementation("io.github.openfeign:feign-core:13.4")
+	implementation("io.github.openfeign:feign-gson:13.4")
+	implementation("io.github.openfeign:feign-jackson:13.4")
 
 	kapt("org.mapstruct:mapstruct-processor:1.6.3")
 

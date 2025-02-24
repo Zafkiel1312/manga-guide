@@ -25,5 +25,5 @@ class MangaEntity(
     val finishedJapanese: Boolean,
     val nextVolumeReleaseDate: Date?,
     @OneToMany(mappedBy = "manga")
-    val volumes: List<VolumeEntity>
+    val volumes: MutableList<VolumeEntity>
 )

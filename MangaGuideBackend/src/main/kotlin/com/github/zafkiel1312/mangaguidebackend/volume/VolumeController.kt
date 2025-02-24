@@ -1,9 +1,7 @@
 package com.github.zafkiel1312.mangaguidebackend.volume
 
-import com.github.zafkiel1312.mangaguidebackend.volume.dto.CreateVolumeDto
 import com.github.zafkiel1312.mangaguidebackend.volume.dto.VolumeDto
 import org.springframework.http.HttpStatus
-import org.springframework.transaction.annotation.Transactional
 import org.springframework.web.bind.annotation.*
 import java.util.UUID
 
@@ -12,11 +10,11 @@ import java.util.UUID
 class VolumeController(
     private val volumeService: VolumeService
 ) {
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @Transactional
-    fun createVolume(@RequestBody createVolumeDto: CreateVolumeDto): UUID =
-        volumeService.createVolume(createVolumeDto)
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @Transactional
+//    fun createVolume(@RequestBody createVolumeDto: CreateVolumeDto): UUID =
+//        volumeService.createVolume(createVolumeDto)
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

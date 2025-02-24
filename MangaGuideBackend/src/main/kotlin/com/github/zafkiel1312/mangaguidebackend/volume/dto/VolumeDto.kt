@@ -6,6 +6,7 @@ data class VolumeDto(
     val id: UUID,
     var mangaId: UUID,
     val number: Int,
-    val releaseDate: Date,
-    val released: Boolean
+    val releaseDate: Date?,
+    val released: Boolean,
+    val imageUrl: String,
 )

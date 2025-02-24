@@ -13,6 +13,7 @@ class VolumeEntity(
     @JoinColumn(name = "manga_id", nullable = false)
     var manga: MangaEntity,
     val number: Int,
-    val releaseDate: Date,
-    val released: Boolean
+    val releaseDate: Date?,
+    val released: Boolean,
+    val imageUrl: String,
 )
