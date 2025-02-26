@@ -1,4 +1,4 @@
-package com.github.zafkiel1312.mangaguidebackend.mangapassion.dto.volume
+package com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.dto.volume
 
 import com.fasterxml.jackson.annotation.JsonProperty
 import java.util.*

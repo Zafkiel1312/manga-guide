@@ -1,6 +1,6 @@
 <script lang="ts">
     import '../app.css';
-    import { AppRail, AppRailTile, AppRailAnchor } from '@skeletonlabs/skeleton';
+    import { AppRail, AppRailAnchor } from '@skeletonlabs/skeleton';
     import MaterialSymbolsMenu from '~icons/material-symbols/menu'
     import MaterialSymbolsMenuBook from '~icons/material-symbols/menu-book'
     import MaterialSymbolsArticlePerson from '~icons/material-symbols/article-person'
@@ -18,6 +18,7 @@
     setContext("usableHeight", () => height)
 
 </script>
+
 <div class="flex flex-row w-full">
     <AppRail height="h-screen">
         <svelte:fragment slot="lead">

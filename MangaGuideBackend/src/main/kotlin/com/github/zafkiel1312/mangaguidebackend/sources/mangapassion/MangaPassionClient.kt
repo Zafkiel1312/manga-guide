@@ -1,9 +1,9 @@
-package com.github.zafkiel1312.mangaguidebackend.mangapassion
+package com.github.zafkiel1312.mangaguidebackend.sources.mangapassion
 
-import com.github.zafkiel1312.mangaguidebackend.mangapassion.dto.edition.EditionResponseDto
-import com.github.zafkiel1312.mangaguidebackend.mangapassion.dto.volume.VolumeResponseDto
-import com.github.zafkiel1312.mangaguidebackend.mangapassion.params.EditionParams
-import com.github.zafkiel1312.mangaguidebackend.mangapassion.params.VolumeParams
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.dto.edition.EditionResponseDto
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.dto.volume.VolumeResponseDto
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.params.EditionParams
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.params.VolumeParams
 import feign.Param
 import feign.QueryMap
 import feign.RequestLine

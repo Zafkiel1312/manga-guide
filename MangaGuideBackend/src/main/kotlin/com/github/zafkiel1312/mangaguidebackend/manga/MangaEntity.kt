@@ -10,8 +10,9 @@ import java.util.*
 class MangaEntity(
     @Id @GeneratedValue
     val id: UUID? = null,
+    val mangaPassionId: Long,
     val title: String,
-    val pictureUrl: String,
+    val imageUrl: String,
     @ElementCollection
     val author: List<String>,
     @ManyToOne

@@ -1,4 +1,4 @@
-package com.github.zafkiel1312.mangaguidebackend.scraper
+package com.github.zafkiel1312.mangaguidebackend.sources.scraper
 
 import java.time.LocalDate
 import java.time.ZoneId

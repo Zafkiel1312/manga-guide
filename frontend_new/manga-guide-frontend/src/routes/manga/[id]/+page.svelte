@@ -76,7 +76,7 @@
         </div>
         <div class="h-full w-fit pl-5">
             <div class="h-72 w-48 overflow-hidden rounded-2xl">
-                <img src={data.manga.pictureUrl} alt={data.manga.title} class="object-cover h-full w-full"/>
+                <img src={data.manga.imageUrl} alt={data.manga.title} class="object-cover h-full w-full"/>
             </div>
         </div>
     </div>

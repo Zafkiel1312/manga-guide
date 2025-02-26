@@ -1,10 +1,10 @@
-package com.github.zafkiel1312.mangaguidebackend.scraper.dto
+package com.github.zafkiel1312.mangaguidebackend.sources.scraper.dto
 
 import java.util.Date
 
 data class DetailsDto(
     val title: String,
-    val pictureUrl: String,
+    val imageUrl: String,
     val author: List<String>,
     val artist: List<String>,
     val publisher: List<String>,

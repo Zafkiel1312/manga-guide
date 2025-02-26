@@ -10,7 +10,7 @@ class PublisherEntity(
     @Id @GeneratedValue
     val id: UUID? = null,
     val name: String,
-    val pictureUrl: String,
+    val imageUrl: String,
     @OneToMany(mappedBy = "publisher")
     val mangas: List<MangaEntity>
 )

@@ -5,6 +5,6 @@ import java.util.*
 data class PublisherDto(
     val id: UUID? = null,
     val name: String,
-    val pictureUrl: String,
+    val imageUrl: String,
     val mangaIds: List<UUID>
 )

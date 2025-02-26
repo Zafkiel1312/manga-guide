@@ -1,7 +1,7 @@
 export interface MangaDto {
     "id": string,
     "title": string,
-    "pictureUrl": string,
+    "imageUrl": string,
     "author": string[],
     "publisherId": string,
     "releaseDate": Date | null,
@@ -20,6 +20,13 @@ export interface VolumeDto {
     "number": number,
     "releaseDate": Date | null,
     "released": boolean,
+    "imageUrl": string
+}
+
+export interface MangaSearchDto {
+    "mangaPassionId": number,
+    "title": string,
+    "author": string[],
     "imageUrl": string
 }
 
@@ -57,4 +64,36 @@ export const getVolumesOfMangaWithId = async (id: string) => {
     }
 
     return await response.json() as VolumeDto[]
+}
+
+export const searchNewManga = async (searchString: string) => {
+    let url = `http://localhost:8080/manga/search?searchString=${searchString}`
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+        throw new Error(response.statusText)
+    }
+
+    return await response.json() as MangaSearchDto[]
+}
+
+export const createNemManga = async (id: number) => {
+    let url = "http://localhost:8080/manga/mangaPassion"
+    let body = JSON.stringify({id: id})
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: body
+    })
+
+    if (!response.ok) {
+        throw new Error(response.statusText)
+    }
+
+    return await response.json() as string
 }

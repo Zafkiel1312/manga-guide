@@ -1,8 +1,8 @@
-package com.github.zafkiel1312.mangaguidebackend.scraper
+package com.github.zafkiel1312.mangaguidebackend.sources.scraper
 
-import com.github.zafkiel1312.mangaguidebackend.scraper.dto.DetailsDto
-import com.github.zafkiel1312.mangaguidebackend.scraper.dto.ScraperSearchResultDto
-import com.github.zafkiel1312.mangaguidebackend.scraper.dto.VolumeDetailsDto
+import com.github.zafkiel1312.mangaguidebackend.sources.scraper.dto.DetailsDto
+import com.github.zafkiel1312.mangaguidebackend.sources.scraper.dto.ScraperSearchResultDto
+import com.github.zafkiel1312.mangaguidebackend.sources.scraper.dto.VolumeDetailsDto
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.springframework.stereotype.Service
@@ -73,7 +73,7 @@ class ScraperService(
     private fun extractDetails(detailsPage: Element): DetailsDto {
         val title = detailsPage.getElementsByClass("manga_mainHeadingWrapper__sGPUj").first
             .getElementsByTag("h1").first.text()
-        val pictureUrl = "https://www.manga-passion.de" +
+        val imageUrl = "https://www.manga-passion.de" +
             detailsPage.getElementsByClass("img_img__jkdIh").first.attr("src")
         val releaseDate = dateUtil.convertGermanDateToObject(
             detailsPage.getElementsByClass("manga-list_tileItemBorderTextFlex__oykGD")[1].text()
@@ -126,7 +126,7 @@ class ScraperService(
 
         return DetailsDto(
             title,
-            pictureUrl,
+            imageUrl,
             author,
             artist,
             publisher,

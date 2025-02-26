@@ -1,4 +1,4 @@
-package com.github.zafkiel1312.mangaguidebackend.mangapassion.params
+package com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.params
 
 data class EditionParams(
     val title: String,

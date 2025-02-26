@@ -1,7 +1,7 @@
 package com.github.zafkiel1312.mangaguidebackend.services
 
 import com.github.zafkiel1312.mangaguidebackend.manga.MangaService
-import com.github.zafkiel1312.mangaguidebackend.mangapassion.MangaPassionClient
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.MangaPassionClient
 import com.github.zafkiel1312.mangaguidebackend.publisher.PublisherService
 import com.github.zafkiel1312.mangaguidebackend.publisher.dto.CreatePublisherDto
 import com.github.zafkiel1312.mangaguidebackend.volume.VolumeService

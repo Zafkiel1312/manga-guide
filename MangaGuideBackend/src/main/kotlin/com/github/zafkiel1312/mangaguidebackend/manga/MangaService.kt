@@ -4,14 +4,14 @@ import com.github.zafkiel1312.mangaguidebackend.exceptions.EntityNotFoundExcepti
 import com.github.zafkiel1312.mangaguidebackend.manga.dto.CreateMangaDto
 import com.github.zafkiel1312.mangaguidebackend.manga.dto.MangaDto
 import com.github.zafkiel1312.mangaguidebackend.manga.dto.SearchResultDto
-import com.github.zafkiel1312.mangaguidebackend.mangapassion.MangaPassionClient
-import com.github.zafkiel1312.mangaguidebackend.mangapassion.dto.edition.EditionResponseDto
-import com.github.zafkiel1312.mangaguidebackend.mangapassion.dto.volume.VolumeResponseDto
-import com.github.zafkiel1312.mangaguidebackend.mangapassion.params.EditionParams
-import com.github.zafkiel1312.mangaguidebackend.mangapassion.params.VolumeParams
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.MangaPassionClient
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.dto.edition.EditionResponseDto
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.dto.volume.VolumeResponseDto
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.params.EditionParams
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.params.VolumeParams
 import com.github.zafkiel1312.mangaguidebackend.publisher.PublisherService
-import com.github.zafkiel1312.mangaguidebackend.scraper.ScraperService
-import com.github.zafkiel1312.mangaguidebackend.scraper.dto.ScraperSearchResultDto
+import com.github.zafkiel1312.mangaguidebackend.sources.scraper.ScraperService
+import com.github.zafkiel1312.mangaguidebackend.sources.scraper.dto.ScraperSearchResultDto
 import com.github.zafkiel1312.mangaguidebackend.volume.VolumeService
 import com.github.zafkiel1312.mangaguidebackend.volume.dto.VolumeDto
 import org.springframework.stereotype.Service
@@ -54,7 +54,11 @@ class MangaService(
         var i = 1
         while (keepGoing) {
             val volume = mangaPassionClient.getEditions(
-                EditionParams(searchString, i++, 30)
+                EditionParams(
+                    searchString,
+                    i++,
+                    30
+                )
             )
             if (volume.isEmpty()) {
                 keepGoing = false
@@ -118,6 +122,7 @@ class MangaService(
 
         val entity = MangaEntity(
             null,
+            mangaPassionId,
             edition.title,
             edition.cover,
             author,
@@ -150,8 +155,9 @@ class MangaService(
 
         val entity = MangaEntity(
             null,
+            0,
             details.title,
-            details.pictureUrl,
+            details.imageUrl,
             details.author,
             publisher,
             details.releaseDate,

@@ -1,4 +1,4 @@
-package com.github.zafkiel1312.mangaguidebackend.mangapassion
+package com.github.zafkiel1312.mangaguidebackend.sources.mangapassion
 
 import feign.Feign
 import feign.jackson.JacksonDecoder

@@ -1,4 +1,4 @@
-package com.github.zafkiel1312.mangaguidebackend.mangapassion.dto.edition
+package com.github.zafkiel1312.mangaguidebackend.sources.mangapassion.dto.edition
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
