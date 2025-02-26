@@ -6,4 +6,5 @@ import java.util.*
 
 @Repository
 interface VolumeRepository: JpaRepository<VolumeEntity, UUID> {
+    fun findAllByMangaId(mangaId: UUID): List<VolumeEntity>
 }

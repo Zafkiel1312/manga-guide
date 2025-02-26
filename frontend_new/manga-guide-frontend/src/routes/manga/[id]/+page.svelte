@@ -3,7 +3,14 @@
     import MaterialSymbolsCheckCircleRounded from '~icons/material-symbols/check-circle-rounded'
 
     let {data}: PageProps = $props();
-    data.manga.releaseDate = new Date(data.manga.releaseDate)
+    if (data.manga.releaseDate != null) {
+        data.manga.releaseDate = new Date(data.manga.releaseDate)
+    }
+    data.volumes.forEach((volume) => {
+        if (volume.releaseDate != null) {
+            volume.releaseDate = new Date(volume.releaseDate)
+        }
+    })
 
     let boughtFinished = data.manga.boughtVolumes === data.manga.japaneseVolumes && data.manga.finishedJapanese
 </script>
@@ -22,46 +29,47 @@
                     {/each}
                 </div>
                 <div class="text-surface-400">
-                    released: {data.manga.releaseDate.getDate()}.{data.manga.releaseDate.getMonth()+1}.{data.manga.releaseDate.getFullYear()}
+                    released: {data.manga.releaseDate.getDate()}.{data.manga.releaseDate.getMonth() + 1}
+                    .{data.manga.releaseDate.getFullYear()}
                 </div>
             </div>
             <div class="table-container pt-5">
                 <table class="table table-hover text-center">
                     <thead>
-                        <tr>
-                            <th></th>
-                            <th class="text-center">volumes</th>
-                            <th class="text-center">finished</th>
-                        </tr>
+                    <tr>
+                        <th></th>
+                        <th class="text-center">volumes</th>
+                        <th class="text-center">finished</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>bought</td>
-                            <td>{data.manga.boughtVolumes}</td>
-                            <td class="flex justify-center">
-                                {#if boughtFinished}
-                                    <MaterialSymbolsCheckCircleRounded class="text-primary-700"/>
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>released</td>
-                            <td>{data.manga.releasedVolumes}</td>
-                            <td class="flex justify-center">
-                                {#if data.manga.finished}
-                                    <MaterialSymbolsCheckCircleRounded class="text-primary-700"/>
-                                {/if}
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>japanese</td>
-                            <td>{data.manga.japaneseVolumes}</td>
-                            <td class="flex justify-center">
-                                {#if data.manga.finishedJapanese}
-                                    <MaterialSymbolsCheckCircleRounded class="text-primary-700"/>
-                                {/if}
-                            </td>
-                        </tr>
+                    <tr>
+                        <td>bought</td>
+                        <td>{data.manga.boughtVolumes}</td>
+                        <td class="flex justify-center">
+                            {#if boughtFinished}
+                                <MaterialSymbolsCheckCircleRounded class="text-primary-700"/>
+                            {/if}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>released</td>
+                        <td>{data.manga.releasedVolumes}</td>
+                        <td class="flex justify-center">
+                            {#if data.manga.finished}
+                                <MaterialSymbolsCheckCircleRounded class="text-primary-700"/>
+                            {/if}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>japanese</td>
+                        <td>{data.manga.japaneseVolumes}</td>
+                        <td class="flex justify-center">
+                            {#if data.manga.finishedJapanese}
+                                <MaterialSymbolsCheckCircleRounded class="text-primary-700"/>
+                            {/if}
+                        </td>
+                    </tr>
                     </tbody>
                 </table>
             </div>
@@ -71,5 +79,23 @@
                 <img src={data.manga.pictureUrl} alt={data.manga.title} class="object-cover h-full w-full"/>
             </div>
         </div>
+    </div>
+    <div class="snap-x scroll-px-4 snap-mandatory scroll-smooth flex gap-4 overflow-x-auto px-4 py-10">
+        {#each data.volumes as volume, i}
+            <div class="snap-start shrink-0 card h-72 w-48 overflow-hidden hover:scale-110 transition">
+                <div class="relative z-0 h-full w-full">
+                    <img src={volume.imageUrl} alt={i} class="object-cover h-full w-full"/>
+                    <div class="absolute z-10 bottom-0 bg-surface-800 opacity-90 h-1/6 w-full flex flex-col justify-center">
+                        <div class="w-full p-3 text-center">
+                            {#if volume.releaseDate != null}
+                                {volume.releaseDate.getDate()}.{volume.releaseDate.getMonth() + 1}.{volume.releaseDate.getFullYear()}
+                            {:else }
+                                TBA
+                            {/if}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {/each}
     </div>
 </div>

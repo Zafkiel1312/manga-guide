@@ -4,7 +4,7 @@ export interface MangaDto {
     "pictureUrl": string,
     "author": string[],
     "publisherId": string,
-    "releaseDate": Date,
+    "releaseDate": Date | null,
     "releasedVolumes": number,
     "boughtVolumes": number,
     "japaneseVolumes": number,
@@ -12,6 +12,15 @@ export interface MangaDto {
     "finishedJapanese": boolean,
     "nextVolumeReleaseDate": Date,
     "volumeIds": string[]
+}
+
+export interface VolumeDto {
+    "id": string,
+    "mangaId": string,
+    "number": number,
+    "releaseDate": Date | null,
+    "released": boolean,
+    "imageUrl": string
 }
 
 export const getAllMangas = async () => {
@@ -36,4 +45,16 @@ export const getMangaById = async (id: string) => {
     }
 
     return await response.json() as MangaDto
+}
+
+export const getVolumesOfMangaWithId = async (id: string) => {
+    let url = `http://localhost:8080/manga/${id}/volumes`
+
+    const response = await fetch(url)
+
+    if (!response.ok) {
+        throw new Error(response.statusText)
+    }
+
+    return await response.json() as VolumeDto[]
 }

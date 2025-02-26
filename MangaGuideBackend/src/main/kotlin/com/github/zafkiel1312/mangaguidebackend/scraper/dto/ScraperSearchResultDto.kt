@@ -1,6 +1,6 @@
 package com.github.zafkiel1312.mangaguidebackend.scraper.dto
 
-data class SearchResultDto(
+data class ScraperSearchResultDto(
     val name: String,
     val author: List<String>,
     val publisher: List<String>,

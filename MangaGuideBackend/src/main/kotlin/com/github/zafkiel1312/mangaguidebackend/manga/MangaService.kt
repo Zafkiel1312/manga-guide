@@ -3,13 +3,17 @@ package com.github.zafkiel1312.mangaguidebackend.manga
 import com.github.zafkiel1312.mangaguidebackend.exceptions.EntityNotFoundException
 import com.github.zafkiel1312.mangaguidebackend.manga.dto.CreateMangaDto
 import com.github.zafkiel1312.mangaguidebackend.manga.dto.MangaDto
+import com.github.zafkiel1312.mangaguidebackend.manga.dto.SearchResultDto
 import com.github.zafkiel1312.mangaguidebackend.mangapassion.MangaPassionClient
+import com.github.zafkiel1312.mangaguidebackend.mangapassion.dto.edition.EditionResponseDto
 import com.github.zafkiel1312.mangaguidebackend.mangapassion.dto.volume.VolumeResponseDto
+import com.github.zafkiel1312.mangaguidebackend.mangapassion.params.EditionParams
 import com.github.zafkiel1312.mangaguidebackend.mangapassion.params.VolumeParams
 import com.github.zafkiel1312.mangaguidebackend.publisher.PublisherService
 import com.github.zafkiel1312.mangaguidebackend.scraper.ScraperService
-import com.github.zafkiel1312.mangaguidebackend.scraper.dto.SearchResultDto
+import com.github.zafkiel1312.mangaguidebackend.scraper.dto.ScraperSearchResultDto
 import com.github.zafkiel1312.mangaguidebackend.volume.VolumeService
+import com.github.zafkiel1312.mangaguidebackend.volume.dto.VolumeDto
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 import java.util.*
@@ -41,8 +45,38 @@ class MangaService(
             throw EntityNotFoundException("Manga with id $id could not be found")
         }
 
-    fun searchMangaFromScraper(searchString: String): List<SearchResultDto> =
-        scraperService.searchByString(searchString)
+    fun getVolumesOfMangaWithId(id: UUID): List<VolumeDto> =
+        volumeService.getVolumesOfMangaWithId(id)
+
+    fun searchMangaFromMangaPassion(searchString: String): List<SearchResultDto> {
+        val editions = mutableListOf<EditionResponseDto>()
+        var keepGoing = true
+        var i = 1
+        while (keepGoing) {
+            val volume = mangaPassionClient.getEditions(
+                EditionParams(searchString, i++, 30)
+            )
+            if (volume.isEmpty()) {
+                keepGoing = false
+                continue
+            }
+            editions.addAll(volume)
+        }
+
+        return editions.map {
+            val authors = it.sources.flatMap { sources ->
+                sources.contributors.map { contributors ->
+                    contributors.contributor.name
+                }
+            }
+            SearchResultDto(
+                it.id,
+                it.title,
+                authors,
+                it.cover
+            )
+        }
+    }
 
     @Transactional
     fun createMangaFromMangaPassion(mangaPassionId: Long): UUID {
@@ -102,6 +136,9 @@ class MangaService(
             volumeService.createVolumesFromMangaPassion(it, volumes)
         }.id!!
     }
+
+    fun searchMangaFromScraper(searchString: String): List<ScraperSearchResultDto> =
+        scraperService.searchByString(searchString)
 
     @Transactional
     fun createMangaFromScraper(scraperUrl: String): UUID {

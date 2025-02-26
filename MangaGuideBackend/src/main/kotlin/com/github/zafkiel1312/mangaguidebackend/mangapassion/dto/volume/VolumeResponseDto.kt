@@ -11,5 +11,9 @@ data class VolumeResponseDto(
     @JsonProperty("date")
     val date: Date?,
     @JsonProperty("cover")
-    val cover: String
+    val cover: String,
+    @JsonProperty("type")
+    val type: Int?,
+    @JsonProperty("specialType")
+    val specialType: Int?,
 )

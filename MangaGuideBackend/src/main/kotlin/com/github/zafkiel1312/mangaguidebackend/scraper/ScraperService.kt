@@ -1,11 +1,10 @@
 package com.github.zafkiel1312.mangaguidebackend.scraper
 
 import com.github.zafkiel1312.mangaguidebackend.scraper.dto.DetailsDto
-import com.github.zafkiel1312.mangaguidebackend.scraper.dto.SearchResultDto
+import com.github.zafkiel1312.mangaguidebackend.scraper.dto.ScraperSearchResultDto
 import com.github.zafkiel1312.mangaguidebackend.scraper.dto.VolumeDetailsDto
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
-import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.util.Date
 
@@ -15,7 +14,7 @@ class ScraperService(
 ) {
     private val dateUtil = DateUtil()
 
-    fun searchByString(searchString: String): List<SearchResultDto> {
+    fun searchByString(searchString: String): List<ScraperSearchResultDto> {
         val doc = Jsoup.parse(
             requestUtil.requestWebsiteWithRetry(
                 url = "https://www.manga-passion.de/search?q=$searchString",
@@ -29,7 +28,7 @@ class ScraperService(
             .map(this::extractDataFromListItem)
     }
 
-    private fun extractDataFromListItem(listItem: Element): SearchResultDto {
+    private fun extractDataFromListItem(listItem: Element): ScraperSearchResultDto {
         val detailsUrl = "https://www.manga-passion.de" +
             listItem.attr("href")
         val imageUrl = "https://www.manga-passion.de" +
@@ -48,7 +47,7 @@ class ScraperService(
             it.text()
         }
 
-        return SearchResultDto(
+        return ScraperSearchResultDto(
             name,
             author,
             publisher,
