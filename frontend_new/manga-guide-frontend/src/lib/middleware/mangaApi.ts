@@ -24,7 +24,7 @@ export interface VolumeDto {
 }
 
 export interface MangaSearchDto {
-    "mangaPassionId": number,
+    "mangaSourceId": number,
     "title": string,
     "author": string[],
     "imageUrl": string

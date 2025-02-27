@@ -27,7 +27,7 @@
                     {#if linkToDetails}
                         <MangaField text={manga.title} alt={manga.title} imageUrl={manga.imageUrl} href="/manga/{manga.id}" onClickEvent={() => {}}/>
                     {:else}
-                        <MangaField text={manga.title} alt={manga.title} imageUrl={manga.imageUrl} href="/manga/add" onClickEvent={() => {onClickEvent(manga.mangaPassionId)}} />
+                        <MangaField text={manga.title} alt={manga.title} imageUrl={manga.imageUrl} href="/manga/add" onClickEvent={() => {onClickEvent(manga.mangaSourceId)}} />
                     {/if}
                 </div>
             {/each}
