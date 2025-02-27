@@ -1,9 +1,9 @@
-package com.github.zafkiel1312.mangaguidebackend.sources.scraper.dto
+package com.github.zafkiel1312.mangaguidebackend.sources.dto
 
 import java.util.*
 
-data class VolumeDetailsDto(
-    val name: String,
+data class NewVolumeDto(
+    val sourceVolumeId: String,
     val number: Int,
     val releaseDate: Date?,
     val released: Boolean,

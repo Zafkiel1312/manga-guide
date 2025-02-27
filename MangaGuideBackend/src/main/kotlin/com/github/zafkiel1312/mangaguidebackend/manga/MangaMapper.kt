@@ -1,10 +1,10 @@
 package com.github.zafkiel1312.mangaguidebackend.manga
 
 import com.github.zafkiel1312.mangaguidebackend.exceptions.EntityIdIsNullException
-import com.github.zafkiel1312.mangaguidebackend.manga.dto.CreateMangaDto
 import com.github.zafkiel1312.mangaguidebackend.manga.dto.MangaDto
 import com.github.zafkiel1312.mangaguidebackend.publisher.PublisherEntity
 import com.github.zafkiel1312.mangaguidebackend.publisher.PublisherService
+import com.github.zafkiel1312.mangaguidebackend.sources.dto.NewMangaDto
 import com.github.zafkiel1312.mangaguidebackend.volume.VolumeEntity
 import org.mapstruct.Mapper
 import org.mapstruct.Mapping
@@ -17,9 +17,9 @@ abstract class MangaMapper {
     abstract fun convertToDto(entity: MangaEntity): MangaDto
 
     @Mapping(target = "id", ignore = true)
-    @Mapping(target = "publisher", source = "publisherId")
     @Mapping(target = "volumes", expression = "java(new java.util.ArrayList())")
-    abstract fun convertToEntity(dto: CreateMangaDto): MangaEntity
+    @Mapping(target = "boughtVolumes", expression = "java(0)")
+    abstract fun convertToEntity(dto: NewMangaDto): MangaEntity
 
 
     fun publisherToId(entity: PublisherEntity): UUID =

@@ -30,4 +30,7 @@ class PublisherService(
         publisherRepository.findById(id).orElseThrow {
             throw EntityNotFoundException("Publisher with id $id could not be found")
         }
+
+    fun getPlaceholderPublisher(placeholder: String): PublisherEntity =
+        publisherRepository.findAll().first()
 }

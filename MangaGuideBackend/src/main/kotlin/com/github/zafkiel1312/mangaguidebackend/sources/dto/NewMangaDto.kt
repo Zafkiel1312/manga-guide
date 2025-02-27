@@ -1,21 +1,19 @@
-package com.github.zafkiel1312.mangaguidebackend.manga.dto
+package com.github.zafkiel1312.mangaguidebackend.sources.dto
 
 import java.util.*
 
-data class MangaDto(
-    val id: UUID?,
+data class NewMangaDto(
     val sourceKey: String,
     val sourceMangaId: String,
     val title: String,
     val imageUrl: String,
     val author: List<String>,
-    val publisherId: UUID,
+    val publisher: String,
     val releaseDate: Date?,
     val releasedVolumes: Int,
-    val boughtVolumes: Int,
     val japaneseVolumes: Int,
     val finished: Boolean,
     val finishedJapanese: Boolean,
     val nextVolumeReleaseDate: Date?,
-    val volumeIds: List<UUID>
+    val volumes: List<NewVolumeDto>
 )

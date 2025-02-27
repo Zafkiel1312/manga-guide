@@ -3,7 +3,7 @@ package com.github.zafkiel1312.mangaguidebackend.manga
 import com.github.zafkiel1312.mangaguidebackend.manga.dto.CreateByMangaPassionIdDto
 import com.github.zafkiel1312.mangaguidebackend.manga.dto.CreateMangaDto
 import com.github.zafkiel1312.mangaguidebackend.manga.dto.MangaDto
-import com.github.zafkiel1312.mangaguidebackend.manga.dto.SearchResultDto
+import com.github.zafkiel1312.mangaguidebackend.sources.dto.SearchResultDto
 import com.github.zafkiel1312.mangaguidebackend.volume.dto.VolumeDto
 import org.springframework.http.HttpStatus
 import org.springframework.transaction.annotation.Transactional
@@ -15,11 +15,11 @@ import java.util.*
 class MangaController(
     private val mangaService: MangaService,
 ) {
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @Transactional
-    fun createManga(@RequestBody createMangaDto: CreateMangaDto): UUID =
-        mangaService.createMange(createMangaDto)
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    @Transactional
+//    fun createManga(@RequestBody createMangaDto: CreateMangaDto): UUID =
+//        mangaService.createMange(createMangaDto)
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)

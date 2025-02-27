@@ -1,8 +1,8 @@
-package com.github.zafkiel1312.mangaguidebackend.sources.scraper
+package com.github.zafkiel1312.mangaguidebackend.sources.mangapassionscraper
 
-import com.github.zafkiel1312.mangaguidebackend.sources.scraper.dto.DetailsDto
-import com.github.zafkiel1312.mangaguidebackend.sources.scraper.dto.ScraperSearchResultDto
-import com.github.zafkiel1312.mangaguidebackend.sources.scraper.dto.VolumeDetailsDto
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassionscraper.dto.DetailsDto
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassionscraper.dto.ScraperSearchResultDto
+import com.github.zafkiel1312.mangaguidebackend.sources.mangapassionscraper.dto.VolumeDetailsDto
 import org.jsoup.Jsoup
 import org.jsoup.nodes.Element
 import org.springframework.stereotype.Service
