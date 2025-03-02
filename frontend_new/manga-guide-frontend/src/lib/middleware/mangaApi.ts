@@ -66,8 +66,8 @@ export const getVolumesOfMangaWithId = async (id: string) => {
     return await response.json() as VolumeDto[]
 }
 
-export const searchNewManga = async (searchString: string) => {
-    let url = `http://localhost:8080/manga/search?searchString=${searchString}`
+export const searchNewManga = async (sourceKey: string, searchString: string) => {
+    let url = `http://localhost:8080/manga/search?searchString=${searchString}&sourceKey=${sourceKey}`
 
     const response = await fetch(url)
 
@@ -78,7 +78,39 @@ export const searchNewManga = async (searchString: string) => {
     return await response.json() as MangaSearchDto[]
 }
 
-export const createNemManga = async (id: number) => {
+export const createNemManga = async (sourceKey: string, id: string) => {
+    let url = `http://localhost:8080/manga/mangaPassion?sourceKey=${sourceKey}`
+    let body = JSON.stringify({sourceMangaId: id})
+
+    const response = await fetch(url, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json"
+        },
+        body: body
+    })
+
+    if (!response.ok) {
+        throw new Error(response.statusText)
+    }
+
+    return await response.json() as string
+}
+
+export const getAllMangaSources = async () => {
+    let url = "http://localhost:8080/manga/sources"
+
+    const response= await fetch(url)
+
+    if (!response.ok) {
+        throw new Error(response.statusText)
+    }
+
+    return await response.json() as string[]
+}
+
+/*export const createNemManga = async (id: number) => {
     let url = "http://localhost:8080/manga/mangaPassion"
     let body = JSON.stringify({id: id})
 
@@ -96,4 +128,4 @@ export const createNemManga = async (id: number) => {
     }
 
     return await response.json() as string
-}
+}*/
