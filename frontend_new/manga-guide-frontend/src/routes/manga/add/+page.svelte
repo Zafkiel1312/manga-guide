@@ -48,5 +48,5 @@
             </button>
         </div>
     </div>
-    <MangaArray mangas={mangas} linkToDetails={false}/>
+    <MangaArray mangas={mangas} linkToDetails={false} sourceKey={selectedSource}/>
 </div>

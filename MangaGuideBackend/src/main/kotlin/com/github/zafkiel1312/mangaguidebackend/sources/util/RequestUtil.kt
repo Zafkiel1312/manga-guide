@@ -1,4 +1,4 @@
-package com.github.zafkiel1312.mangaguidebackend.sources.mangapassionscraper
+package com.github.zafkiel1312.mangaguidebackend.sources.util
 
 import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor

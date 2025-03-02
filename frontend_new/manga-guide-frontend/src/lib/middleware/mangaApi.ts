@@ -79,7 +79,7 @@ export const searchNewManga = async (sourceKey: string, searchString: string) =>
 }
 
 export const createNemManga = async (sourceKey: string, id: string) => {
-    let url = `http://localhost:8080/manga/mangaPassion?sourceKey=${sourceKey}`
+    let url = `http://localhost:8080/manga?sourceKey=${sourceKey}`
     let body = JSON.stringify({sourceMangaId: id})
 
     const response = await fetch(url, {
