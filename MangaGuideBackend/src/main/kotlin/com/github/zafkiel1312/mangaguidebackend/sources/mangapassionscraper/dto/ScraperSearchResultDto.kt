@@ -1,4 +1,4 @@
-package com.github.zafkiel1312.mangaguidebackend.sources.scraper.dto
+package com.github.zafkiel1312.mangaguidebackend.sources.mangapassionscraper.dto
 
 data class ScraperSearchResultDto(
     val name: String,

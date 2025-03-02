@@ -6,15 +6,15 @@
     import MangaField from "$lib/components/manga/MangaField.svelte";
     import {goto} from "$app/navigation";
 
-    let {mangas, linkToDetails} = $props()
+    let {mangas, linkToDetails, sourceKey} = $props()
 
     let usableWidth = getContext<() => number>("usableWidth")
     let rowSize = $derived(Math.ceil(usableWidth() / 420))
     let leftOverSpaces = $derived((rowSize - (mangas.length % rowSize)) % rowSize)
     let rowCount = $derived(Math.ceil(mangas.length / rowSize))
 
-    let onClickEvent = async (id: number) => {
-        let uuid = await createNemManga(id)
+    let onClickEvent = async (id: string) => {
+        let uuid = await createNemManga(sourceKey, id)
         await goto(`/manga/${uuid}`)
     }
 </script>
@@ -27,7 +27,7 @@
                     {#if linkToDetails}
                         <MangaField text={manga.title} alt={manga.title} imageUrl={manga.imageUrl} href="/manga/{manga.id}" onClickEvent={() => {}}/>
                     {:else}
-                        <MangaField text={manga.title} alt={manga.title} imageUrl={manga.imageUrl} href="/manga/add" onClickEvent={() => {onClickEvent(manga.mangaPassionId)}} />
+                        <MangaField text={manga.title} alt={manga.title} imageUrl={manga.imageUrl} href="/manga/add" onClickEvent={() => {onClickEvent(manga.mangaSourceId)}} />
                     {/if}
                 </div>
             {/each}

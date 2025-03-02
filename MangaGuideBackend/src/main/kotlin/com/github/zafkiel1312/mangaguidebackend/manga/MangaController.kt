@@ -1,9 +1,8 @@
 package com.github.zafkiel1312.mangaguidebackend.manga
 
-import com.github.zafkiel1312.mangaguidebackend.manga.dto.CreateByMangaPassionIdDto
-import com.github.zafkiel1312.mangaguidebackend.manga.dto.CreateMangaDto
+import com.github.zafkiel1312.mangaguidebackend.manga.dto.CreateMangaFromSourceDto
 import com.github.zafkiel1312.mangaguidebackend.manga.dto.MangaDto
-import com.github.zafkiel1312.mangaguidebackend.manga.dto.SearchResultDto
+import com.github.zafkiel1312.mangaguidebackend.sources.dto.SearchResultDto
 import com.github.zafkiel1312.mangaguidebackend.volume.dto.VolumeDto
 import org.springframework.http.HttpStatus
 import org.springframework.transaction.annotation.Transactional
@@ -15,12 +14,6 @@ import java.util.*
 class MangaController(
     private val mangaService: MangaService,
 ) {
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    @Transactional
-    fun createManga(@RequestBody createMangaDto: CreateMangaDto): UUID =
-        mangaService.createMange(createMangaDto)
-
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     fun getAllMangas(): List<MangaDto> =
@@ -36,14 +29,19 @@ class MangaController(
     fun getVolumesOfMangaWithId(@PathVariable id: UUID): List<VolumeDto> =
         mangaService.getVolumesOfMangaWithId(id)
 
+    @GetMapping("/sources")
+    @ResponseStatus(HttpStatus.OK)
+    fun getAllMangaSources(): List<String> =
+        mangaService.getAllMangaSources()
+
     @GetMapping("/search")
     @ResponseStatus(HttpStatus.OK)
-    fun searchMangaOnMangaPassion(@RequestParam searchString: String): List<SearchResultDto> =
-        mangaService.searchMangaFromMangaPassion(searchString)
+    fun searchMangaOnSource(@RequestParam sourceKey: String, @RequestParam searchString: String): List<SearchResultDto> =
+        mangaService.searchMangaOnSource(sourceKey, searchString)
 
-    @PostMapping("/mangaPassion")
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Transactional
-    fun createMangaByMangaPassionId(@RequestBody createByMangaPassionIdDto: CreateByMangaPassionIdDto): UUID =
-        mangaService.createMangaFromMangaPassion(createByMangaPassionIdDto.id)
+    fun createMangaFromMangaSource(@RequestParam sourceKey: String, @RequestBody createMangaFromSourceDto: CreateMangaFromSourceDto) =
+        mangaService.createMangaFromMangaSource(sourceKey, createMangaFromSourceDto)
 }

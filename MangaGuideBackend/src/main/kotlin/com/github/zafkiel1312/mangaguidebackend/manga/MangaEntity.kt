@@ -10,7 +10,8 @@ import java.util.*
 class MangaEntity(
     @Id @GeneratedValue
     val id: UUID? = null,
-    val mangaPassionId: Long,
+    val sourceKey: String,
+    val sourceMangaId: String,
     val title: String,
     val imageUrl: String,
     @ElementCollection
@@ -19,12 +20,12 @@ class MangaEntity(
     @JoinColumn(name = "publisher_id", nullable = false)
     var publisher: PublisherEntity,
     val releaseDate: Date?,
-    val releasedVolumes: Int,
-    val boughtVolumes: Int,
-    val japaneseVolumes: Int,
-    val finished: Boolean,
-    val finishedJapanese: Boolean,
-    val nextVolumeReleaseDate: Date?,
+    var releasedVolumes: Int,
+    var boughtVolumes: Int,
+    var japaneseVolumes: Int,
+    var finished: Boolean,
+    var finishedJapanese: Boolean,
+    var nextVolumeReleaseDate: Date?,
     @OneToMany(mappedBy = "manga")
     val volumes: MutableList<VolumeEntity>
 )
