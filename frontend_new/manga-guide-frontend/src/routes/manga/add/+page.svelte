@@ -4,6 +4,7 @@
     import MangaArray from "$lib/components/manga/MangaArray.svelte";
     import {onMount} from "svelte";
     import type {PageProps} from "../../../../.svelte-kit/types/src/routes/manga/[id]/$types";
+    import {ProgressRadial} from "@skeletonlabs/skeleton";
 
     let {data}: PageProps = $props()
     let sourceKeys = data.sourcesKeys
@@ -12,10 +13,12 @@
 
     let searchString = $state("")
     let mangas = $state(new Array<MangaSearchDto>())
-
+    let searching = $state(false)
 
     const submitSearch = async (search: string) => {
+        searching = true
         mangas = await searchNewManga(selectedSource, search)
+        searching = false
     }
 
     onMount(() => {
@@ -48,5 +51,11 @@
             </button>
         </div>
     </div>
-    <MangaArray mangas={mangas} linkToDetails={false} sourceKey={selectedSource}/>
+    {#if searching}
+        <div class="pl-5">
+            <ProgressRadial value="{undefined}" width="w-14" stroke="80" meter="stroke-primary-600" track="stroke-primary-600/30"/>
+        </div>
+    {:else}
+        <MangaArray mangas={mangas} linkToDetails={false} sourceKey={selectedSource}/>
+    {/if}
 </div>
