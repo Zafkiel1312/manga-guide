@@ -30,6 +30,7 @@ dependencies {
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.8.4")
 	implementation("org.jsoup:jsoup:1.18.3")
 	implementation("org.seleniumhq.selenium:selenium-java:4.29.0")
+	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.10.1")
 
 	implementation("io.github.openfeign:feign-core:13.4")
 	implementation("io.github.openfeign:feign-gson:13.4")

@@ -1,4 +1,4 @@
-package com.github.zafkiel1312.mangaguidebackend.sources.mangapassionscraper
+package com.github.zafkiel1312.mangaguidebackend.sources.util
 
 import java.time.LocalDate
 import java.time.ZoneId
