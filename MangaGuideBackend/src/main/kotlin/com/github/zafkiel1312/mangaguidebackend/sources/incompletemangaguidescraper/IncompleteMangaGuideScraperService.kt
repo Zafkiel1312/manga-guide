@@ -114,8 +114,22 @@ class IncompleteMangaGuideScraperService : MangaSource {
         }.attr("src").let { url ->
             "https://mangaguide.de" + url.drop(1)
         }
-        val author = listOf<String>() //ToDo
-        val publisher = "" //ToDo
+        val author = doc.getElementById("inhalt")!!
+            .getElementsByTag("table").first
+            .getElementsByTag("tr")
+            .filter { it ->
+                it.getElementsByTag("td").none {
+                    it.attr("colspan") == "2" ||
+                        it.attr("colspan") == "3"
+                }
+            }.map {
+                it.getElementsByTag("a").first.text()
+            }
+        val publisher = doc.getElementById("inhalt")!!
+            .getElementsByTag("table").first
+            .getElementsByTag("tr").first {
+                it.text().contains("Verlag:")
+            }.getElementsByTag("a").first.text()
         val releaseDate = extractDateFromBandText(
             doc.getElementsByClass("bandtext").first
         )
@@ -176,7 +190,7 @@ class IncompleteMangaGuideScraperService : MangaSource {
         val finishedJapanese = finished
 
         val volumes = bandTextsAndCoverUrls.map {
-            val sourceVolumeId = "" //ToDo is there one for this?
+            val sourceVolumeId = ""
             val number = it.first.text().split("Band ")[1].split(" ")[0].toInt()
             val releaseDate = extractDateFromBandText(it.first)
             val released = releaseDate?.before(Date()) ?: false

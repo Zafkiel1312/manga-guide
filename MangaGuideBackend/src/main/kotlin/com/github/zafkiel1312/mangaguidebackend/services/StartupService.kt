@@ -27,7 +27,7 @@ class StartupService(
             )
         )
 
-        imgScraperService.searchManga("kom")
+        imgScraperService.searchManga("komi")
         imgScraperService.getMangaDetails("https://mangaguide.de/index.php?include=5&manga_id=3098")
     }
 }
