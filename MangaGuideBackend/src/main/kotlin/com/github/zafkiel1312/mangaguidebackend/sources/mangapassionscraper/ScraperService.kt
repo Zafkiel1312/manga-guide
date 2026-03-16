@@ -10,7 +10,7 @@ import org.jsoup.nodes.Element
 import org.springframework.stereotype.Service
 import java.util.Date
 
-@Service
+//@Service
 class ScraperService(
     private val requestUtil: RequestUtil
 ) {

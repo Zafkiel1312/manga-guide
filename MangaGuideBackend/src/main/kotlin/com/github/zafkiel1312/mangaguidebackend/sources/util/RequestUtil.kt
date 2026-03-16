@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxOptions
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Component
 
-@Component
+//@Component
 class RequestUtil {
     private val logger = LoggerFactory.getLogger(this::class.java)
 

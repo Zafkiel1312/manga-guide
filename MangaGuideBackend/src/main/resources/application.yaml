@@ -1,3 +1,9 @@
 spring:
   application:
     name: "MangaGuideBackend"
+
+com:
+  github:
+    zafkiel1312:
+      basic-auth:
+        create-default-admin: true

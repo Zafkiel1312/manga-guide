@@ -7,7 +7,7 @@ import com.github.zafkiel1312.mangaguidebackend.sources.dto.SearchResultDto
 import com.github.zafkiel1312.mangaguidebackend.sources.mangapassionscraper.dto.VolumeDetailsDto
 import org.springframework.stereotype.Service
 
-@Service
+//@Service
 class MangaPassionScraperService(
     private val scraperService: ScraperService
 ): MangaSource {

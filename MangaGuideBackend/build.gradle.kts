@@ -1,10 +1,10 @@
 plugins {
-	kotlin("jvm") version "1.9.25"
-	kotlin("plugin.spring") version "1.9.25"
-	id("org.springframework.boot") version "3.4.2"
-	id("io.spring.dependency-management") version "1.1.7"
-	kotlin("plugin.jpa") version "1.9.25"
-	kotlin("kapt") version "1.9.25"
+	kotlin("jvm")
+	kotlin("plugin.spring")
+	id("org.springframework.boot")
+	id("io.spring.dependency-management")
+	kotlin("plugin.jpa")
+	kotlin("kapt")
 }
 
 group = "com.github.zafkiel1312"
@@ -21,6 +21,8 @@ repositories {
 }
 
 dependencies {
+	implementation(project(":spring-boot-starter-basic-auth"))
+
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")

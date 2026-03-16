@@ -16,7 +16,7 @@ import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
 import java.util.Date
 
-@Service
+//@Service
 class IncompleteMangaGuideScraperService : MangaSource {
     private val requestUtil = RequestUtil()
     private val dateUtil = DateUtil()
